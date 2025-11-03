@@ -1,0 +1,35 @@
+# Virtual Environment
+venv-docling/
+venv/
+env/
+ENV/
+*.pyc
+__pycache__/
+
+# Models directory - keep folder but ignore all contents except .gitkeep
+models/*
+!models/.gitkeep
+
+# Temp directory - keep folder but ignore all contents except .gitkeep
+temp/*
+!temp/.gitkeep
+
+# Python
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
