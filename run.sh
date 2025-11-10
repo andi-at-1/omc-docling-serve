@@ -1,5 +1,25 @@
+#!/bin/bash
+
+# Parse arguments
+PORT=8081  # Default port
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --port)
+      PORT="$2"
+      shift
+      shift
+      ;;
+    *)
+      echo "Unknown option: $1"
+      echo "Usage: $0 [--port PORT]"
+      exit 1
+      ;;
+  esac
+done
+
 export DOCLING_SERVE_ENABLE_REMOTE_SERVICES=true
-export DOCLING_SERVE_ARTIFACTS_PATH=/root/omc-docling-serve/models 
+export DOCLING_SERVE_ARTIFACTS_PATH=/root/models/docling
 export DOCLING_SERVE_SCRATCH_PATH=/root/omc-docling-serve/temp
 #export UVICORN_WORKERS=5
 export DOCLING_NUM_THREADS=62       #cpu workers
@@ -11,10 +31,11 @@ export DOCLING_SERVE_LOAD_MODELS_AT_BOOT=true
 export DOCLING_SERVE_MAX_SYNC_WAIT=1000
 export profile_pipeline_timings=True # gibt mir pipeline stats zurück!
 
+echo "Starting docling-serve on port $PORT..."
 
 #firstrun install & download models in dir:
-#/root/omc-docling-serve/.venv/bin/docling-tools models download --all -o models
-/root/omc-docling-serve/.venv/bin/docling-serve run 
+/root/omc-docling-serve/venv-docling/bin/docling-tools models download --all -o /root/models/docling
+/root/omc-docling-serve/venv-docling/bin/docling-serve run --port $PORT --enable-ui
 
 
 # Here are the main ways to speed up Docling document conversion:
