@@ -31,6 +31,9 @@ export DOCLING_SERVE_LOAD_MODELS_AT_BOOT=true
 export DOCLING_SERVE_MAX_SYNC_WAIT=1000
 export profile_pipeline_timings=True # gibt mir pipeline stats zurück!
 
+export TESSDATA_PREFIX=/usr/share/tesseract-ocr/5/tessdata/
+
+
 echo "Starting docling-serve on port $PORT..."
 
 #firstrun install & download models in dir:
